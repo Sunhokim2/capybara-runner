@@ -1,1 +1,1 @@
-Revert: Obstacles now move from right to left
+Feature: Randomize obstacle speed
