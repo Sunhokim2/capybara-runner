@@ -1,1 +1,1 @@
-Change: Obstacles now move from left to right
+Revert: Obstacles now move from right to left
