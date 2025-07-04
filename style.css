@@ -74,6 +74,18 @@ h1 {
     -webkit-text-stroke: 1px black;
 }
 
+#congratulations-message {
+    font-size: 48px;
+    color: #FFD700; /* Gold color */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 3px 3px #000;
+    -webkit-text-stroke: 1px black;
+    z-index: 1000; /* Ensure it's on top */
+}
+
 .confetti-particle {
     position: fixed; /* Fixed position for full screen */
     width: 10px; /* Confetti size */
