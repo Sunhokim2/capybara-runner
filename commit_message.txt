@@ -1,1 +1,1 @@
-Refactor: Add bird obstacle and restart functionality
+Fix: Obstacles now move from right to left
