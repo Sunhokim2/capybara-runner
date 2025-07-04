@@ -1,1 +1,1 @@
-Fix: Obstacles now move from right to left
+Re-confirm: Obstacles move right to left
