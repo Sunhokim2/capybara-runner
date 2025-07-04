@@ -1,1 +1,1 @@
-Feature: Increase bird speed
+Feature: Faster obstacle speed and capybara image

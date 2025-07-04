@@ -54,7 +54,7 @@ function moveObstacles() {
         // Move ground obstacle
         let obstaclePosition = -20; // Start off-screen to the right
         obstacleInterval = setInterval(() => {
-            const obstacleSpeed = Math.floor(Math.random() * (10 - 6 + 1)) + 6; // Random speed between 6 and 10
+            const obstacleSpeed = Math.floor(Math.random() * (15 - 9 + 1)) + 9; // Random speed between 9 and 15 (1.5x faster)
             if (obstaclePosition < 600) { // Move until it's off-screen to the left
                 obstaclePosition += obstacleSpeed; // Increase 'right' value to move left with random speed
                 obstacle.style.right = `${obstaclePosition}px`;
