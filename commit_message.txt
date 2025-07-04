@@ -1,1 +1,1 @@
-Feature: Full-screen confetti and congratulations message every 5 points
+Feature: Revert to full-screen confetti every 3 points

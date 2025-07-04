@@ -4,7 +4,6 @@ const bird = document.getElementById('bird');
 const scoreDisplay = document.getElementById('score');
 const gameOverDisplay = document.getElementById('game-over');
 const gameContainer = document.getElementById('game-container');
-const congratulationsMessage = document.getElementById('congratulations-message');
 
 let score = 0;
 let isJumping = false;
@@ -65,8 +64,8 @@ function moveObstacles() {
                 obstaclePosition = -20; // Reset to off-screen right
                 score++;
                 scoreDisplay.textContent = `Score: ${score}`;
-                if (score > 0 && score % 5 === 0) { // Changed to every 5 points
-                    showCongratulations();
+                if (score > 0 && score % 3 === 0) { // Changed to every 3 points
+                    triggerConfetti();
                 }
             }
         }, 20);
@@ -84,21 +83,13 @@ function moveObstacles() {
                     birdPosition = -20; // Reset to off-screen right
                     score++;
                     scoreDisplay.textContent = `Score: ${score}`;
-                    if (score > 0 && score % 5 === 0) { // Changed to every 5 points
-                        showCongratulations();
+                    if (score > 0 && score % 3 === 0) { // Changed to every 3 points
+                        triggerConfetti();
                     }
                 }
             }
         }, 20);
     }
-}
-
-function showCongratulations() {
-    congratulationsMessage.classList.remove('hidden');
-    triggerConfetti(); // Trigger confetti when congratulations message is shown
-    setTimeout(() => {
-        congratulationsMessage.classList.add('hidden');
-    }, 2000); // Hide after 2 seconds
 }
 
 function triggerConfetti() {
