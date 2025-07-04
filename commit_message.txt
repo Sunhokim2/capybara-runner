@@ -1,1 +1,1 @@
-Feature: Randomize obstacle speed
+Feature: Randomize bird speed

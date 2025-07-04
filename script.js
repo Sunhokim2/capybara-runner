@@ -70,8 +70,9 @@ function moveObstacles() {
         let birdPosition = -20; // Start off-screen to the right
         birdInterval = setInterval(() => {
             if (Math.random() < 0.3) { // 30% chance to spawn a bird
+                const birdSpeed = Math.floor(Math.random() * (12 - 8 + 1)) + 8; // Random speed between 8 and 12
                 if (birdPosition < 600) { // Move until it's off-screen to the left
-                    birdPosition += 7; // Bird moves faster, increase 'right' value
+                    birdPosition += birdSpeed; // Bird moves faster, increase 'right' value with random speed
                     bird.style.right = `${birdPosition}px`;
                     checkCollision();
                 } else {
