@@ -3,6 +3,7 @@ const obstacle = document.getElementById('obstacle');
 const bird = document.getElementById('bird');
 const scoreDisplay = document.getElementById('score');
 const gameOverDisplay = document.getElementById('game-over');
+const gameContainer = document.getElementById('game-container');
 
 let score = 0;
 let isJumping = false;
@@ -63,6 +64,9 @@ function moveObstacles() {
                 obstaclePosition = -20; // Reset to off-screen right
                 score++;
                 scoreDisplay.textContent = `Score: ${score}`;
+                if (score > 0 && score % 5 === 0) {
+                    triggerFireworks();
+                }
             }
         }, 20);
 
@@ -79,12 +83,46 @@ function moveObstacles() {
                     birdPosition = -20; // Reset to off-screen right
                     score++;
                     scoreDisplay.textContent = `Score: ${score}`;
+                    if (score > 0 && score % 5 === 0) {
+                        triggerFireworks();
+                    }
                 }
             }
         }, 20);
     }
 }
 
+function triggerFireworks() {
+    const colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'];
+    const numParticles = 30;
+
+    for (let i = 0; i < numParticles; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('firework-particle');
+        particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        
+        // Position particles around the center of the game container
+        const containerRect = gameContainer.getBoundingClientRect();
+        const startX = containerRect.width / 2;
+        const startY = containerRect.height / 2;
+
+        particle.style.left = `${startX}px`;
+        particle.style.top = `${startY}px`;
+
+        // Randomize animation delay and duration for a more natural look
+        const delay = Math.random() * 0.5; // 0 to 0.5 seconds
+        const duration = 1 + Math.random() * 0.5; // 1 to 1.5 seconds
+        particle.style.animationDelay = `${delay}s`;
+        particle.style.animationDuration = `${duration}s`;
+
+        gameContainer.appendChild(particle);
+
+        // Remove particle after animation ends
+        particle.addEventListener('animationend', () => {
+            particle.remove();
+        });
+    }
+}
 
 function checkCollision() {
     const capybaraRect = capybara.getBoundingClientRect();

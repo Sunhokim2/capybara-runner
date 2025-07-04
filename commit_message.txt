@@ -1,1 +1,1 @@
-Feature: Faster obstacle speed and capybara image
+Feature: Add fireworks on score milestones
