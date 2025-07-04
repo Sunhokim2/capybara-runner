@@ -1,1 +1,1 @@
-Initial commit: Create basic Capybara Runner game
+Refactor: Add bird obstacle and restart functionality

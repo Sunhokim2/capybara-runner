@@ -1,11 +1,14 @@
 const capybara = document.getElementById('capybara');
 const obstacle = document.getElementById('obstacle');
+const bird = document.getElementById('bird');
 const scoreDisplay = document.getElementById('score');
 const gameOverDisplay = document.getElementById('game-over');
 
 let score = 0;
 let isJumping = false;
 let isGameOver = false;
+let obstacleInterval;
+let birdInterval;
 
 document.addEventListener('keydown', (e) => {
     if (e.code === 'Space') {
@@ -46,10 +49,11 @@ function fall() {
     }, 20);
 }
 
-function moveObstacle() {
+function moveObstacles() {
     if (!isGameOver) {
+        // Move ground obstacle
         let obstaclePosition = 600;
-        const obstacleInterval = setInterval(() => {
+        obstacleInterval = setInterval(() => {
             if (obstaclePosition > -20) {
                 obstaclePosition -= 5;
                 obstacle.style.right = `${obstaclePosition}px`;
@@ -60,17 +64,39 @@ function moveObstacle() {
                 scoreDisplay.textContent = `Score: ${score}`;
             }
         }, 20);
+
+        // Move bird obstacle
+        let birdPosition = 600;
+        birdInterval = setInterval(() => {
+            if (Math.random() < 0.3) { // 30% chance to spawn a bird
+                if (birdPosition > -20) {
+                    birdPosition -= 7; // Bird moves faster
+                    bird.style.right = `${birdPosition}px`;
+                    checkCollision();
+                } else {
+                    birdPosition = 600;
+                    score++;
+                    scoreDisplay.textContent = `Score: ${score}`;
+                }
+            }
+        }, 20);
     }
 }
+
 
 function checkCollision() {
     const capybaraRect = capybara.getBoundingClientRect();
     const obstacleRect = obstacle.getBoundingClientRect();
+    const birdRect = bird.getBoundingClientRect();
 
     if (
-        capybaraRect.right > obstacleRect.left &&
+        (capybaraRect.right > obstacleRect.left &&
         capybaraRect.left < obstacleRect.right &&
-        capybaraRect.bottom > obstacleRect.top
+        capybaraRect.bottom > obstacleRect.top) ||
+        (capybaraRect.right > birdRect.left &&
+        capybaraRect.left < birdRect.right &&
+        capybaraRect.top < birdRect.bottom &&
+        capybaraRect.bottom > birdRect.top)
     ) {
         gameOver();
     }
@@ -78,7 +104,25 @@ function checkCollision() {
 
 function gameOver() {
     isGameOver = true;
+    clearInterval(obstacleInterval);
+    clearInterval(birdInterval);
     gameOverDisplay.classList.remove('hidden');
+    
+    setTimeout(() => {
+        if (confirm('Game Over! Play again?')) {
+            restartGame();
+        }
+    }, 100);
 }
 
-moveObstacle();
+function restartGame() {
+    isGameOver = false;
+    score = 0;
+    scoreDisplay.textContent = 'Score: 0';
+    gameOverDisplay.classList.add('hidden');
+    obstacle.style.right = '-20px';
+    bird.style.right = '-20px';
+    moveObstacles();
+}
+
+moveObstacles();
