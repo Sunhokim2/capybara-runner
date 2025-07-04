@@ -1,1 +1,1 @@
-Feature: Randomize bird speed
+Feature: Increase bird speed
