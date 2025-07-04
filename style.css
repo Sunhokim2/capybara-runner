@@ -74,23 +74,22 @@ h1 {
     -webkit-text-stroke: 1px black;
 }
 
-.firework-particle {
+.confetti-particle {
     position: fixed; /* Fixed position for full screen */
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    opacity: 0;
-    animation: explode 1s forwards;
+    width: 10px; /* Confetti size */
+    height: 10px; /* Confetti size */
+    opacity: 1;
+    animation: fall 5s forwards; /* Animation for falling */
     z-index: 9999; /* Ensure it's on top */
 }
 
-@keyframes explode {
+@keyframes fall {
     0% {
-        transform: translate(0, 0) scale(1);
+        transform: translateY(0) rotate(0deg);
         opacity: 1;
     }
     100% {
-        transform: translate(calc((random() - 0.5) * 100vw), calc((random() - 0.5) * 100vh)) scale(0);
+        transform: translateY(100vh) rotate(720deg); /* Fall to bottom of viewport and rotate */
         opacity: 0;
     }
 }

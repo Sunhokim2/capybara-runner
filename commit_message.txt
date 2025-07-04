@@ -1,1 +1,1 @@
-Feature: Full-screen fireworks every 3 points
+Feature: Confetti effect every 3 points
