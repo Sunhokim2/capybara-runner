@@ -52,29 +52,29 @@ function fall() {
 function moveObstacles() {
     if (!isGameOver) {
         // Move ground obstacle
-        let obstaclePosition = -20; // Start off-screen to the right
+        let obstaclePosition = 600; // Start off-screen to the left
         obstacleInterval = setInterval(() => {
-            if (obstaclePosition < 600) { // Move until it's off-screen to the left
-                obstaclePosition += 5; // Increase 'right' value to move left
+            if (obstaclePosition > -20) { // Move until it's off-screen to the right
+                obstaclePosition -= 5; // Decrease 'right' value to move right
                 obstacle.style.right = `${obstaclePosition}px`;
                 checkCollision();
             } else {
-                obstaclePosition = -20; // Reset to off-screen right
+                obstaclePosition = 600; // Reset to off-screen left
                 score++;
                 scoreDisplay.textContent = `Score: ${score}`;
             }
         }, 20);
 
         // Move bird obstacle
-        let birdPosition = -20; // Start off-screen to the right
+        let birdPosition = 600; // Start off-screen to the left
         birdInterval = setInterval(() => {
             if (Math.random() < 0.3) { // 30% chance to spawn a bird
-                if (birdPosition < 600) { // Move until it's off-screen to the left
-                    birdPosition += 7; // Bird moves faster, increase 'right' value
+                if (birdPosition > -20) { // Move until it's off-screen to the right
+                    birdPosition -= 7; // Bird moves faster, decrease 'right' value
                     bird.style.right = `${birdPosition}px`;
                     checkCollision();
                 } else {
-                    birdPosition = -20; // Reset to off-screen right
+                    birdPosition = 600; // Reset to off-screen left
                     score++;
                     scoreDisplay.textContent = `Score: ${score}`;
                 }
