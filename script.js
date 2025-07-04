@@ -64,7 +64,7 @@ function moveObstacles() {
                 obstaclePosition = -20; // Reset to off-screen right
                 score++;
                 scoreDisplay.textContent = `Score: ${score}`;
-                if (score > 0 && score % 5 === 0) {
+                if (score > 0 && score % 3 === 0) { // Changed to every 3 points
                     triggerFireworks();
                 }
             }
@@ -83,7 +83,7 @@ function moveObstacles() {
                     birdPosition = -20; // Reset to off-screen right
                     score++;
                     scoreDisplay.textContent = `Score: ${score}`;
-                    if (score > 0 && score % 5 === 0) {
+                    if (score > 0 && score % 3 === 0) { // Changed to every 3 points
                         triggerFireworks();
                     }
                 }
@@ -94,17 +94,16 @@ function moveObstacles() {
 
 function triggerFireworks() {
     const colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'];
-    const numParticles = 30;
+    const numParticles = 50; // Increased particles for full screen effect
 
     for (let i = 0; i < numParticles; i++) {
         const particle = document.createElement('div');
         particle.classList.add('firework-particle');
         particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
         
-        // Position particles around the center of the game container
-        const containerRect = gameContainer.getBoundingClientRect();
-        const startX = containerRect.width / 2;
-        const startY = containerRect.height / 2;
+        // Position particles randomly across the viewport
+        const startX = Math.random() * window.innerWidth;
+        const startY = Math.random() * window.innerHeight;
 
         particle.style.left = `${startX}px`;
         particle.style.top = `${startY}px`;
@@ -115,7 +114,7 @@ function triggerFireworks() {
         particle.style.animationDelay = `${delay}s`;
         particle.style.animationDuration = `${duration}s`;
 
-        gameContainer.appendChild(particle);
+        document.body.appendChild(particle); // Append to body for full screen
 
         // Remove particle after animation ends
         particle.addEventListener('animationend', () => {

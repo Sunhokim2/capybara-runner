@@ -75,12 +75,13 @@ h1 {
 }
 
 .firework-particle {
-    position: absolute;
+    position: fixed; /* Fixed position for full screen */
     width: 5px;
     height: 5px;
     border-radius: 50%;
     opacity: 0;
     animation: explode 1s forwards;
+    z-index: 9999; /* Ensure it's on top */
 }
 
 @keyframes explode {
@@ -89,7 +90,7 @@ h1 {
         opacity: 1;
     }
     100% {
-        transform: translate(calc((random() - 0.5) * 200px), calc((random() - 0.5) * 200px)) scale(0);
+        transform: translate(calc((random() - 0.5) * 100vw), calc((random() - 0.5) * 100vh)) scale(0);
         opacity: 0;
     }
 }

@@ -1,1 +1,1 @@
-Update: Syncing changes
+Feature: Full-screen fireworks every 3 points
